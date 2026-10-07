@@ -228,7 +228,7 @@ button, input, textarea {
 }
 
 .navbar {
-  min-height: 80px;
+  min-height: 92px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -237,24 +237,45 @@ button, input, textarea {
 }
 
 .site-header.scrolled .navbar {
-  min-height: 68px;
+  min-height: 74px;
 }
 
 .brand {
   display: flex;
   align-items: center;
   flex-shrink: 0;
-  transition: transform var(--transition-fast);
-}
-
-.brand:hover {
-  transform: scale(1.02);
+  transition: transform var(--transition-normal);
 }
 
 .brand img {
-  height: 48px;
+  height: 68px;
   width: auto;
   object-fit: contain;
+  transform-origin: center;
+  animation: logo-float-ambient 4.5s ease-in-out infinite;
+  transition: transform var(--transition-normal), filter var(--transition-normal), height var(--transition-normal);
+  filter: drop-shadow(0 4px 12px rgba(8, 125, 245, 0.22));
+}
+
+.site-header.scrolled .brand img {
+  height: 56px;
+}
+
+.brand:hover img {
+  animation-play-state: paused;
+  transform: translateY(-3px) scale(1.06);
+  filter: drop-shadow(0 8px 24px rgba(16, 184, 244, 0.55)) brightness(1.05);
+}
+
+@keyframes logo-float-ambient {
+  0%, 100% {
+    transform: translateY(0);
+    filter: drop-shadow(0 3px 10px rgba(8, 125, 245, 0.2));
+  }
+  50% {
+    transform: translateY(-5px);
+    filter: drop-shadow(0 8px 22px rgba(16, 184, 244, 0.45));
+  }
 }
 
 .nav-links-wrapper {
@@ -1945,9 +1966,15 @@ button, input, textarea {
 }
 
 .footer-logo img {
-  height: 44px;
+  height: 58px;
   width: auto;
   margin-bottom: 18px;
+  transition: transform var(--transition-normal), filter var(--transition-normal);
+}
+
+.footer-logo:hover img {
+  transform: scale(1.06);
+  filter: drop-shadow(0 4px 16px rgba(16, 184, 244, 0.45));
 }
 
 .footer-tagline {
@@ -2364,6 +2391,14 @@ button, input, textarea {
     background: rgba(255, 255, 255, 0.95);
   }
 
+  .navbar {
+    min-height: 80px;
+  }
+
+  .brand img {
+    height: 58px;
+  }
+
   .menu-toggle {
     display: block;
   }
@@ -2469,6 +2504,10 @@ button, input, textarea {
     flex-direction: column;
     align-items: flex-start;
     gap: 4px;
+  }
+
+  .brand img {
+    height: 50px;
   }
 
   .hero-title {
@@ -2584,5 +2623,9 @@ button, input, textarea {
   .reveal {
     opacity: 1 !important;
     transform: none !important;
+  }
+
+  .brand img {
+    animation: none !important;
   }
 }
